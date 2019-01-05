@@ -28,6 +28,7 @@ CONFUSED_SOUND_PATH = '/home/pi/Music/R2D2/R2_Confused.wav'
 UNRECOGNISED_SOUND_PATH = '/home/pi/Music/R2D2/R2_FastBip.wav'
 
 def sayCommand():
+    print('Rise event')
     aiy.audio.say('Ho Ho Ho! I am your mama')
 
 def EventMonkey(seconds):
