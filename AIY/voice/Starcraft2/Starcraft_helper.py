@@ -27,15 +27,14 @@ CONFIRM_SOUND_PATH = '/home/pi/Music/R2D2/R2_Understood.wav'
 CONFUSED_SOUND_PATH = '/home/pi/Music/R2D2/R2_Confused.wav'
 UNRECOGNISED_SOUND_PATH = '/home/pi/Music/R2D2/R2_FastBip.wav'
 
-def sayCommand():
+def sayCommand(text):
     print('Rise event')
-    aiy.audio.say('Ho Ho Ho! I am your mama')
+    aiy.audio.say(text)
 
 def scheduleEvent(seconds):
     scheduler = sched.scheduler(time.time, time.sleep)
-    print ('Scheduling event:', time.time())
     print ('Event scheduled in ', seconds, ' seconds')
-    scheduler.enter(seconds, 1, sayCommand)
+    scheduler.enter(seconds, 1, sayCommand, 'Ho Ho Ho! I am your mama')
     scheduler.run()
 
 
