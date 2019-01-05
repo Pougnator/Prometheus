@@ -31,6 +31,13 @@ def sayCommand():
     print('Rise event')
     aiy.audio.say('Ho Ho Ho! I am your mama')
 
+def scheduleEvent(seconds):
+    scheduler = sched.scheduler(time.time, time.sleep)
+    print ('Scheduling event:', time.time())
+    print ('Event scheduled in %s seconds', seconds)
+    scheduler.enter(seconds, 1, aiy.audio.say('Ho Ho Ho! I am your mama'))
+
+
 def EventMonkey(seconds):
     scheduler = sched.scheduler(time.time, time.sleep)
     print ('START:', time.time())
@@ -39,7 +46,7 @@ def EventMonkey(seconds):
 def main():
     status_ui = aiy.voicehat.get_status_ui()
     status_ui.status('starting')
-    scheduler = sched.scheduler(time.time, time.sleep)
+    #scheduler = sched.scheduler(time.time, time.sleep)
     
     aiy.i18n.set_language_code("en-GB")
     recognizer = aiy.cloudspeech.get_recognizer()
@@ -54,7 +61,7 @@ def main():
         button.wait_for_press()
         aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
         aiy.audio.say('All right bitch let us start')
-        EventMonkey(3)
+        scheduleEvent(5)
 
 if __name__ == '__main__':
     main()
