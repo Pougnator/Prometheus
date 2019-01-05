@@ -31,7 +31,7 @@ def main():
     status_ui = aiy.voicehat.get_status_ui()
     status_ui.status('starting')
     
-    aiy.i18n.set_language_code("en-EN")
+    aiy.i18n.set_language_code("en-GB")
     recognizer = aiy.cloudspeech.get_recognizer()
     button = aiy.voicehat.get_button()
     led = aiy.voicehat.get_led()
