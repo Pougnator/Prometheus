@@ -35,7 +35,7 @@ def scheduleEvent(seconds):
     scheduler = sched.scheduler(time.time, time.sleep)
     print ('Scheduling event:', time.time())
     print ('Event scheduled in ', seconds, ' seconds')
-    scheduler.enter(seconds, 1, aiy.audio.say('Ho Ho Ho! I am your mama'))
+    scheduler.enter(seconds, 1, sayCommand)
 
 
 def EventMonkey(seconds):
