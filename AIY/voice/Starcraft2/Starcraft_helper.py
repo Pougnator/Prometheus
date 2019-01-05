@@ -36,6 +36,7 @@ def scheduleEvent(seconds):
     print ('Scheduling event:', time.time())
     print ('Event scheduled in ', seconds, ' seconds')
     scheduler.enter(seconds, 1, sayCommand)
+    scheduler.run()
 
 
 def EventMonkey(seconds):
