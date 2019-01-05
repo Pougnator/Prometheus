@@ -34,7 +34,7 @@ def sayCommand(text):
 def scheduleEvent(seconds):
     scheduler = sched.scheduler(time.time, time.sleep)
     print ('Event scheduled in ', seconds, ' seconds')
-    scheduler.enter(seconds, 1, sayCommand, 'Ho Ho Ho! I am your mama')
+    scheduler.enter(seconds, 1, sayCommand, ('Ho Ho Ho! I am your mama',))
     scheduler.run()
 
 
