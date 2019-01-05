@@ -31,60 +31,19 @@ def main():
     status_ui = aiy.voicehat.get_status_ui()
     status_ui.status('starting')
     
-    aiy.i18n.set_language_code("fr-FR")
-    
-    
+    aiy.i18n.set_language_code("en-EN")
     recognizer = aiy.cloudspeech.get_recognizer()
-    recognizer.expect_phrase('allumer le feu')
-    recognizer.expect_phrase('éteindre')
-    recognizer.expect_phrase('clignotter')
-    recognizer.expect_phrase('cuir')
-    recognizer.expect_phrase('R2')
-
     button = aiy.voicehat.get_button()
     led = aiy.voicehat.get_led()
     aiy.audio.get_recorder().start()
-    aiy.audio.say('Bonjour Pougnator!')
+    aiy.audio.say('Hello motherfuckers!')
     while True:
         status_ui.status('ready')
-        print('Press the button and speak')
+        print('Press the button to start')
+        aiy.audio.say('Press the button to start!')
         button.wait_for_press()
-        aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/hotword.wav')
-        status_ui.status('listening')
-        
-        WaitingForHotword = True
-        while WaitingForHotword == True:
-            print('Say the hotword to start')
-            hotword = recognizer.recognize()
-            if not hotword:
-                print('I recognised nothing ... looping')
-            else: 
-                if ('R2') in hotword:
-                    WaitingForHotword = False
-                    print('Playing a test sound...')
-                    aiy.audio.play_wave(CONFIRM_SOUND_PATH)
-                    print('Listening...')
-                    text = recognizer.recognize()
-                    if not text:
-                        print('Sorry, I did not hear you.')
-                        aiy.audio.play_wave(CONFUSED_SOUND_PATH)
-                    else:
-                        WaitingForHotword = True
-                        print('You said "', text, '"')
-                        if 'allumer le feu' in text:
-                            led.set_state(aiy.voicehat.LED.ON)
-                        elif 'éteindre' in text:
-                            led.set_state(aiy.voicehat.LED.OFF)
-                        elif 'clignotter' in text:
-                            led.set_state(aiy.voicehat.LED.BLINK)
-                        elif 'cuir' in text:
-                           # led.set_state(aiy.voicehat.LED.BLINK)
-                            aiy.audio.say('cuir cuir cuir moustache')
-                        elif 'goodbye' in text:
-                            break
-                        else: aiy.audio.play_wave(UNRECOGNISED_SOUND_PATH)
-                     
-                else: print('Hotword not detected ....  looping')
+        aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
+        aiy.audio.say('All right bitch let us start')
 
 if __name__ == '__main__':
     main()
