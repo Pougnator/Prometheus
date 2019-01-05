@@ -46,7 +46,7 @@ def EventMonkey(seconds):
 def main():
     status_ui = aiy.voicehat.get_status_ui()
     status_ui.status('starting')
-    #scheduler = sched.scheduler(time.time, time.sleep)
+    scheduler = sched.scheduler(time.time, time.sleep)
     
     aiy.i18n.set_language_code("en-GB")
     recognizer = aiy.cloudspeech.get_recognizer()
@@ -54,14 +54,14 @@ def main():
     led = aiy.voicehat.get_led()
     aiy.audio.get_recorder().start()
     aiy.audio.say('Hello mother fucker!')
-    while True:
-        status_ui.status('ready')
-        print('Press the button to start')
-        aiy.audio.say('Press the button to start!')
-        button.wait_for_press()
-        aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
-        aiy.audio.say('All right bitch let us start')
-        scheduleEvent(7)
+    
+    status_ui.status('ready')
+    print('Press the button to start')
+    aiy.audio.say('Press the button to start!')
+    button.wait_for_press()
+    aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
+    aiy.audio.say('All right bitch let us start')
+    scheduleEvent(7)
 
 if __name__ == '__main__':
     main()
