@@ -34,7 +34,7 @@ def sayCommand():
 def EventMonkey(seconds):
     scheduler = sched.scheduler(time.time, time.sleep)
     print ('START:', time.time())
-    scheduler.enter(seconds, 1, sayCommand)
+    scheduler.enter(seconds, 1, aiy.audio.say('Ho Ho Ho! I am your mama'))
 
 def main():
     status_ui = aiy.voicehat.get_status_ui()
@@ -54,7 +54,7 @@ def main():
         button.wait_for_press()
         aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
         aiy.audio.say('All right bitch let us start')
-        EventMonkey(5)
+        EventMonkey(3)
 
 if __name__ == '__main__':
     main()
