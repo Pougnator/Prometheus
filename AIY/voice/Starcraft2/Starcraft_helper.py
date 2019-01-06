@@ -27,23 +27,34 @@ CONFIRM_SOUND_PATH = '/home/pi/Music/R2D2/R2_Understood.wav'
 CONFUSED_SOUND_PATH = '/home/pi/Music/R2D2/R2_Confused.wav'
 UNRECOGNISED_SOUND_PATH = '/home/pi/Music/R2D2/R2_FastBip.wav'
 
-def sayCommand(text):
-    print('Rise event')
-    aiy.audio.say(text)
-    scheduleEvent(2)
+test_build_order = [[0,"Spawn a drone"],[12,"Spawn an overlord"], \
+[17,"Spawn a drone"], [30,"Spawn two more drones"], [49,"Build a hatchery"] ]
 
-def scheduleEvent(seconds):
-    stext = 'Ho Ho Ho! I am your mama'
+def sayCommand(text, buildOrder):
+    print('Rise event')
+    print(text)
+    aiy.audio.say(text)
+    buildOrder.pop(0)
+    if len(buildOrder)>1:
+        scheduleEvent(buildOrder)
+    else:
+        print("The End")
+    
+
+def scheduleEvent(buildOrder):
+    stext = buildOrder[1][1]
+    seconds = buildOrder[1][0] - buildOrder[0][0]
     scheduler = sched.scheduler(time.time, time.sleep)
     print ('Event scheduled in ', seconds, ' seconds')
-    scheduler.enter(seconds, 1, sayCommand, (stext,))
+    scheduler.enter(seconds, 1, sayCommand, (stext, buildOrder))
     scheduler.run()
 
 
-def EventMonkey(seconds):
-    scheduler = sched.scheduler(time.time, time.sleep)
-    print ('START:', time.time())
-    scheduler.enter(seconds, 1, aiy.audio.say('Ho Ho Ho! I am your mama'))
+
+# def EventMonkey(seconds):
+#     scheduler = sched.scheduler(time.time, time.sleep)
+#     print ('START:', time.time())
+#     scheduler.enter(seconds, 1, aiy.audio.say('Ho Ho Ho! I am your mama'))
 
 def main():
     status_ui = aiy.voicehat.get_status_ui()
@@ -63,7 +74,7 @@ def main():
     button.wait_for_press()
     aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
     aiy.audio.say('All right bitch let us start')
-    scheduleEvent(3)
+    scheduleEvent(test_build_order)
 
 if __name__ == '__main__':
     main()
