@@ -28,7 +28,18 @@ CONFUSED_SOUND_PATH = '/home/pi/Music/R2D2/R2_Confused.wav'
 UNRECOGNISED_SOUND_PATH = '/home/pi/Music/R2D2/R2_FastBip.wav'
 
 test_build_order = [[0,"Spawn a drone"],[12,"Spawn an overlord"], \
-[17,"Spawn a drone"], [30,"Spawn two more drones"], [49,"Build a hatchery"] ]
+[17,"Spawn a drone"], [30,"Spawn two more drones"], [49,"Build a hatchery"] \
+[52,"Spawn two drones"],[60,"Spawn a drone"],[70, "Build an extractor"],\
+[75,"Build a Spawning Pool"],[78,"Hatch a drone"],[86,"Hatch two drones"],\
+[109,"Spawn an Overlord"],[121, "Spawn two Queens"],[123, "Spawn two zerlings"],\
+[130,"Upgrade Metablic Boost"],[160,"Build a Hatchery"],[166,"Spawn two zerlings"],\
+[177,"Hatch an Overlord"],[179,"Spawn a Queen"],[195,"Overlord"],\
+[208,"Overlord"],[220,"Queen"],[225,"Build a Spore Crawler"],\
+[233,"Hatch four Zerglings"],[240,"Queen"],[250,"Another Spore Crawler"],\
+[262,"Lair"],[264,"Two extractors"],[276,"Build a Spore Crawler"],\
+[285,"Build a Roach Warren"],[291,"Two zerglings"],[304,"Extractor"],\
+[325,"Seven Roaches"],[329,"Upgrade Gilal Reconstitution"],[354,"Extractor"],\
+]
 
 def sayCommand(text, buildOrder):
     print('Rise event')
