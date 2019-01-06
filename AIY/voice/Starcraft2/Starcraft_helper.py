@@ -28,7 +28,7 @@ CONFUSED_SOUND_PATH = '/home/pi/Music/R2D2/R2_Confused.wav'
 UNRECOGNISED_SOUND_PATH = '/home/pi/Music/R2D2/R2_FastBip.wav'
 
 test_build_order = [[0,"Spawn a drone"],[12,"Spawn an overlord"], \
-[17,"Spawn a drone"], [30,"Spawn two more drones"], [49,"Build a hatchery"] \
+[17,"Spawn a drone"], [30,"Spawn two more drones"], [49,"Build a hatchery"], \
 [52,"Spawn two drones"],[60,"Spawn a drone"],[70, "Build an extractor"],\
 [75,"Build a Spawning Pool"],[78,"Hatch a drone"],[86,"Hatch two drones"],\
 [109,"Spawn an Overlord"],[121, "Spawn two Queens"],[123, "Spawn two zerlings"],\
