@@ -74,6 +74,7 @@ def main():
     button.wait_for_press()
     aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
     aiy.audio.say('All right bitch let us start')
+    aiy.audio.say("Build that first drone")
     scheduleEvent(test_build_order)
 
 if __name__ == '__main__':
