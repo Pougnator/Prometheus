@@ -46,11 +46,12 @@ def sayCommand(text, buildOrder):
     buildOrder.pop(0)
     if len(buildOrder)>1:
         scheduleEvent(buildOrder)
+        print(text)
+        aiy.audio.say(text)
     else:
         print("The End")
     print('Rise event')
-    print(text)
-    aiy.audio.say(text)
+    
     
 
 def scheduleEvent(buildOrder):
