@@ -41,28 +41,41 @@ test_build_order = [[0,"Spawn a drone"],[12,"Spawn an overlord"], \
 [325,"Seven Roaches"],[329,"Upgrade Gilal Reconstitution"],[354,"Extractor"],\
 ]
 
-def sayCommand(text, buildOrder):
+def sayCommand(text):
    
-    buildOrder.pop(0)
-    if len(buildOrder)>1:
-        scheduleEvent(buildOrder)
-        print(text)
-        aiy.audio.say(text)
-    else:
-        print("The End")
-    print('Rise event')
-    
-    
+    # buildOrder.pop(0)
+    # if len(buildOrder)>1:
+    #     scheduleEvent(buildOrder)
+    #     print(text)
+    #     aiy.audio.say(text)
+    # else:
+    #     print("The End")
+    # print('Rise event')
+    aiy.audio.say(text)
+    print(text)
 
-def scheduleEvent(buildOrder):
+def scheduleEvent(buildOrder, scheduler):
     stext = buildOrder[1][1]
-    seconds = buildOrder[1][0] - buildOrder[0][0]
-    scheduler = sched.scheduler(time.time, time.sleep)
+    seconds = buildOrder[1][0]
+    
     print ('Event scheduled in ', seconds, ' seconds')
-    scheduler.enter(seconds, 1, sayCommand, (stext, buildOrder))
-    scheduler.run()
+    scheduler.enter(seconds, 1, sayCommand, (stext,))
+    
+    print('Rise event')
+    print(stext)
 
-
+def monkey(buildOrder):
+    myscheduler = sched.scheduler(time.time, time.sleep)
+    i=0
+    while i < len(buildOrder):
+         
+        if len(buildOrder)>1:
+            scheduleEvent(buildOrder, myscheduler)
+        else:
+            print("The End")
+        buildOrder.pop(0)
+        i+=1
+    myscheduler.run()
 
 # def EventMonkey(seconds):
 #     scheduler = sched.scheduler(time.time, time.sleep)
@@ -88,7 +101,7 @@ def main():
     aiy.voicehat.get_status_ui().set_trigger_sound_wave('/home/pi/Music/R2D2/R2_Understood.wav')
     aiy.audio.say('All right bitch let us start',volume=65, pitch=105)
     aiy.audio.say("Build that first drone")
-    scheduleEvent(test_build_order)
+    monkey(test_build_order)
 
 if __name__ == '__main__':
     main()
