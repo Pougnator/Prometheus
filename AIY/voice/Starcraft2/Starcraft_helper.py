@@ -42,14 +42,15 @@ test_build_order = [[0,"Spawn a drone"],[12,"Spawn an overlord"], \
 ]
 
 def sayCommand(text, buildOrder):
-    print('Rise event')
-    print(text)
-    aiy.audio.say(text)
+   
     buildOrder.pop(0)
     if len(buildOrder)>1:
         scheduleEvent(buildOrder)
     else:
         print("The End")
+    print('Rise event')
+    print(text)
+    aiy.audio.say(text)
     
 
 def scheduleEvent(buildOrder):
